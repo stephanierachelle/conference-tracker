@@ -23,7 +23,7 @@ const ConferenceView = conferences => (
     <App>
         <StageBanner
         action={() => console.log(`Logging out!`)}
-        title="Conferences"
+        title="conferences"
         />
         <CardContainer>
             {conferences.map(conference => (
@@ -34,4 +34,34 @@ const ConferenceView = conferences => (
 );
 
 
-m.render(root, ConferenceView(CONFERENCES));
+const CFPView = () => (
+    <App>
+      <StageBanner
+        action={() => console.log(`Logging out!`)}
+        title="Call for Papers"
+      />
+      <CardContainer />
+    </App>
+  );
+  
+  const FormView = () => (
+    <App>
+      <StageBanner
+        action={() => console.log(`Logging out!`)}
+        title="Add Conference"
+      />
+      <CardContainer />
+    </App>
+  );
+  
+  m.route(root, "/conferences", {
+    "/conferences": {
+      view: () => ConferenceView(CONFERENCES)
+    },
+    "/cfp": {
+      view: () => CFPView(CONFERENCES)
+    },
+    "/entry": {
+      view: () => FormView()
+    }
+  });
