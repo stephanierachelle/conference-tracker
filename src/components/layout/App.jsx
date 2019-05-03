@@ -74,18 +74,30 @@ const App = {
   oncreate: vnode => {
     const mainStage = vnode.dom.querySelector(".main-stage");
 
-    m.route(mainStage, "/conferences", {
+    //*** Adding THIS HERE */
+    auth.handleAuthentication();
+
+    m.route(mainStage, "/auth", {
       "/auth": {
         view: () => WelcomeView()
       },
       "/conferences": {
-        view: () => ConferenceView(CONFERENCES)
+        onmatch: () =>
+        auth.isAuthenticated()
+        ? { view: () => ConferenceView(CONFERENCES) }
+        : m.route.set("/auth")
       },
       "/cfp": {
-        view: () => CFPView(CONFERENCES)
+        onmatch: () =>
+        auth.isAuthenticated()
+        ? {view: () => CFPView(CONFERENCES) }
+        : m.route.set("/auth")
       },
       "/entry": {
-        view: () => FormView()
+        onmatch: () =>
+        auth.isAuthenticated()
+      ? { view: () => FormView() }
+        : m.route.set("/auth")
       }
     });
   },
