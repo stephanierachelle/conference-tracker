@@ -1,5 +1,13 @@
 // src/components/layout/App.jsx
 
+// Services
+import Auth from "../../services/auth.js";
+const auth = new Auth();
+
+
+// UI
+import UIButton from "../../components/ui/UIButton.jsx";
+
 const m = require("mithril");
 
 import MainStage from "./MainStage.jsx";
@@ -16,11 +24,21 @@ import EntryForm from "../../components/EntryForm.jsx";
 
 // Mock data
 import { getMockData } from "../../store/data";
+
+const WelcomeView = () => [
+  <h1 class="app-title">Conference Tracker</h1>,
+  <h2 class="app-greeting">Welcome</h2>,
+  <span class="app-description">Track conferences and CFP dates.</span>,
+  <div class="login-button">
+  <UIButton action={() => auth.login()} buttonName="LOGIN" />
+  </div>
+];
+
 const CONFERENCES = getMockData();
 
 const ConferenceView = conferences => [
   <StageBanner
-    action={() => console.log(`Logging out!`)}
+    action={() => auth.logout()}
     title="Conferences"
   />,
   <CardContainer>
@@ -44,7 +62,7 @@ const CFPView = conferences => [
 
 const FormView = () => [
   <StageBanner
-    action={() => console.log(`Logging out!`)}
+    action={() => auth.logout()}
     title="Add Conference"
   />,
   <CardContainer>
@@ -57,6 +75,9 @@ const App = {
     const mainStage = vnode.dom.querySelector(".main-stage");
 
     m.route(mainStage, "/conferences", {
+      "/auth": {
+        view: () => WelcomeView()
+      },
       "/conferences": {
         view: () => ConferenceView(CONFERENCES)
       },
@@ -68,6 +89,7 @@ const App = {
       }
     });
   },
+
   view: ({ children }) => (
     <div class="App">
       <MainStage>{children}</MainStage>

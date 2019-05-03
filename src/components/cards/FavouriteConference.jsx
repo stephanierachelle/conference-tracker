@@ -1,4 +1,4 @@
-const m = require("mithril");
+/*const m = require("mithril");
 
 import ConferenceCard from "./ConferenceCard";
 
@@ -18,3 +18,4 @@ export default FavouriteConference;
 
 
 //add to favourites
+*/
