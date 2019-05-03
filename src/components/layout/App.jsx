@@ -15,7 +15,7 @@ import CFPCard from "../../components/cards/CFPCard.jsx";
 import EntryForm from "../../components/EntryForm.jsx";
 
 // Mock data
-import getMockData from "../../store/data";
+import { getMockData } from "../../store/data";
 const CONFERENCES = getMockData();
 
 const ConferenceView = conferences => [

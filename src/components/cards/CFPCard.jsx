@@ -1,9 +1,12 @@
 const m = require("mithril");
 import ConferenceField from "./ConferenceField.jsx";
 
+import CountDownField from "./CountDownField.jsx";
+
 const CFPCard  = {
     view: ({ attrs }) => (
         <div class="conference-card">
+        {/* ... */}
             <div class="conference-fields">
             <ConferenceField
             fieldValue={`${attrs.conference.name} @ {attrs.conference.location}`}
@@ -12,7 +15,7 @@ const CFPCard  = {
             </div>
             <div class="conference-fields">
             <ConferenceField fieldValue={attrs.conference.CFPDate} />
-            <ConferenceField fieldValue={`19 d 20 hr 45 m`} />
+            <CountDownField fieldValue={attrs.conference.CFPDate} />
             </div>
         </div>
     )

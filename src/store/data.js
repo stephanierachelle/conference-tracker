@@ -39,6 +39,6 @@ const CONFERENCES = [
     }
   ];
   
-  const getMockData = () => CONFERENCES;
+  exports.getMockData = () => CONFERENCES;
   
-  export default getMockData;
+  exports.setMockData = conference => CONFERENCES.push(conference);
