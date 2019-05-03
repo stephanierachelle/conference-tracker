@@ -11,6 +11,9 @@ import CardContainer from "../../components/layout/CardContainer.jsx";
 import ConferenceCard from "../../components/cards/ConferenceCard.jsx";
 import CFPCard from "../../components/cards/CFPCard.jsx";
 
+//form submition
+import EntryForm from "../../components/EntryForm.jsx";
+
 // Mock data
 import getMockData from "../../store/data";
 const CONFERENCES = getMockData();
@@ -44,8 +47,11 @@ const FormView = () => [
     action={() => console.log(`Logging out!`)}
     title="Add Conference"
   />,
-  <CardContainer />
+  <CardContainer>
+      <EntryForm />
+      </CardContainer>
 ];
+
 const App = {
   oncreate: vnode => {
     const mainStage = vnode.dom.querySelector(".main-stage");
